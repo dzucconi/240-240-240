@@ -20,3 +20,14 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: sans-serif;
 }
+
+img {
+  position: absolute;
+}
+
+.mask--a { mask: url(mask_a.svg); }
+.mask--b { mask: url(mask_b.svg); }
+.hue--90 { filter: hue-rotate(90deg); }
+.hue--180 { filter: hue-rotate(180deg); }
+.hue--280 { filter: hue-rotate(280deg); }
+.hue--360 { filter: hue-rotate(360deg); }
