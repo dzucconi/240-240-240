@@ -1,6 +1,9 @@
 import parameters from 'queryparams';
+import getPrefix from './lib/getPrefix';
 
 window.parameters = parameters;
+
+const PREFIX = getPrefix().css;
 
 const DOM = {
   app: document.getElementById('app'),
@@ -12,26 +15,38 @@ const SRCS = [
   'https://atlas-production.s3.amazonaws.com/10070/e6a518cfb5db121ef5eb357956297d0a856afefb3416e6fb6e7b760c753c957d.jpg',
 ];
 
-const generateLayer = ({ src, mask, rotation }) => `
-  <div class='Layer' style="-webkit-mask: url(${mask}--50.svg)">
-    <img
-      src='${src}'
-      class='Layer Hue--${rotation}'
-    />
-  </div>
-`;
+const generateLayer = ({ src, mask, size, rotation }) => {
+  const styles = {
+    filter: `hue-rotate(${rotation}deg)`,
+    mask: `url(${mask}--${size}.svg)`,
+  };
+
+  const style = Object.keys(styles).map(key =>
+    `${PREFIX}${key}:${styles[key]};${key}:${styles[key]}`).join(';');
+
+  return `
+    <div class='Layer' style='${style}'>
+      <img
+        src='${src}'
+        class='Layer'
+      />
+    </div>
+  `
+};
 
 export default () => {
   DOM.app.innerHTML = `
     ${generateLayer({
       src: SRCS[1],
       mask: 'ad',
+      size: 50,
       rotation: 360,
     })}
 
     ${generateLayer({
       src: SRCS[0],
       mask: 'bc',
+      size: 50,
       rotation: 270,
     })}
   `;
