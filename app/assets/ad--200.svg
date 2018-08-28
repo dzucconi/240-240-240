@@ -1,6 +1,0 @@
-<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0h200v200H0zm200 200h200v200H200z"/>
-    <clipPath id="mask" clipPathUnits="objectBoundingBox">
-      <path d="M0 0h200v200H0zm200 200h200v200H200z"/>
-    </clipPath>
-  </svg>
