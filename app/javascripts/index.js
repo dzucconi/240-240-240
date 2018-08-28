@@ -1,19 +1,16 @@
 import parameters from 'queryparams';
+
+import config from './config';
 import getPrefix from './lib/getPrefix';
 
 window.parameters = parameters;
 
+const SIZES = config.SIZES;
 const PREFIX = getPrefix().css;
 
 const DOM = {
   app: document.getElementById('app'),
 };
-
-const SRCS = [
-  'https://atlas-production.s3.amazonaws.com/10329/4976f520a78ad08a6c23d5855639b6842e8b496f01c7d1402d4120d148aa5af1.jpg',
-  'https://atlas-production.s3.amazonaws.com/10353/2c22bd812af91623008d92529b12010240b449d35009a1c02d24c20656da7f6c.jpg',
-  'https://atlas-production.s3.amazonaws.com/10070/e6a518cfb5db121ef5eb357956297d0a856afefb3416e6fb6e7b760c753c957d.jpg',
-];
 
 const generateLayer = ({ src, mask, size, rotation }) => {
   const styles = {
@@ -31,23 +28,41 @@ const generateLayer = ({ src, mask, size, rotation }) => {
         class='Layer'
       />
     </div>
-  `
+  `;
 };
 
 export default () => {
-  DOM.app.innerHTML = `
-    ${generateLayer({
-      src: SRCS[1],
-      mask: 'ad',
-      size: 50,
-      rotation: 360,
-    })}
+  const { size } = parameters({
+    size: 7,
+  });
 
-    ${generateLayer({
-      src: SRCS[0],
-      mask: 'bc',
-      size: 50,
+  DOM.app.innerHTML = [
+    generateLayer({
+      src: 'images/8.jpg',
+      mask: 'a',
+      size: SIZES[size],
+      rotation: 0,
+    }),
+
+    generateLayer({
+      src: 'images/8.jpg',
+      mask: 'b',
+      size: SIZES[size],
+      rotation: 90,
+    }),
+
+    generateLayer({
+      src: 'images/10.jpg',
+      mask: 'c',
+      size: SIZES[size],
+      rotation: 180,
+    }),
+
+    generateLayer({
+      src: 'images/8.jpg',
+      mask: 'd',
+      size: SIZES[size],
       rotation: 270,
-    })}
-  `;
+    }),
+  ].join('');
 };
