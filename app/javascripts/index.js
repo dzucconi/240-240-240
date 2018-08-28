@@ -15,7 +15,7 @@ const DOM = {
 const generateLayer = ({ src, mask, size, rotation }) => {
   const styles = {
     filter: `hue-rotate(${rotation}deg)`,
-    mask: `url(${mask}--${size}.svg)`,
+    mask: `url(svgs/${mask}--${size}.svg)`,
   };
 
   const style = Object.keys(styles).map(key =>
