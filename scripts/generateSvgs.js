@@ -33,7 +33,7 @@ const writeSVGs = () => {
   NAMES.forEach(name => {
     SIZES.forEach(size => {
       const xml = GENERATORS[name](size);
-      fs.writeFile(`./app/assets/${name}--${size}.svg`, xml, (err) => {
+      fs.writeFile(`./app/assets/svgs/${name}--${size}.svg`, xml, (err) => {
         if (err) return console.log(err);
         console.log(`Saved ${name}/${size}`);
       });
