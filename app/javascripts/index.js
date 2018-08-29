@@ -1,9 +1,5 @@
-import parameters from 'queryparams';
-
 import config from './config';
 import getPrefix from './lib/getPrefix';
-
-window.parameters = parameters;
 
 const SIZES = config.SIZES;
 const PREFIX = getPrefix().css;
@@ -11,6 +7,9 @@ const PREFIX = getPrefix().css;
 const DOM = {
   app: document.getElementById('app'),
 };
+
+const rand = (min, max) =>
+  Math.floor(Math.random() * (max - min)) + min;
 
 const generateLayer = ({ src, mask, size, rotation }) => {
   const styles = {
@@ -32,37 +31,41 @@ const generateLayer = ({ src, mask, size, rotation }) => {
 };
 
 export default () => {
-  const { size } = parameters({
-    size: 7,
-  });
+  const render = () => {
+    const size = SIZES[rand(2, SIZES.length)];
 
-  DOM.app.innerHTML = [
-    generateLayer({
-      src: 'images/8.jpg',
-      mask: 'a',
-      size: SIZES[size],
-      rotation: 0,
-    }),
+    DOM.app.innerHTML = [
+      generateLayer({
+        src: `images/${rand(1, 25)}.jpg`,
+        mask: 'a',
+        size,
+        rotation: 0,
+      }),
 
-    generateLayer({
-      src: 'images/8.jpg',
-      mask: 'b',
-      size: SIZES[size],
-      rotation: 90,
-    }),
+      generateLayer({
+        src: `images/${rand(1, 25)}.jpg`,
+        mask: 'b',
+        size,
+        rotation: 90,
+      }),
 
-    generateLayer({
-      src: 'images/10.jpg',
-      mask: 'c',
-      size: SIZES[size],
-      rotation: 180,
-    }),
+      generateLayer({
+        src: `images/${rand(1, 25)}.jpg`,
+        mask: 'c',
+        size,
+        rotation: 180,
+      }),
 
-    generateLayer({
-      src: 'images/8.jpg',
-      mask: 'd',
-      size: SIZES[size],
-      rotation: 270,
-    }),
-  ].join('');
+      generateLayer({
+        src: `images/${rand(1, 25)}.jpg`,
+        mask: 'd',
+        size,
+        rotation: 270,
+      }),
+    ].join('');
+  };
+
+  render();
+
+  document.body.addEventListener('click', render);
 };
