@@ -1,6 +1,8 @@
+import imagesLoaded from 'imagesloaded';
+
 import config from './config';
 import rand from './lib/rand';
-import generateLayer from './lib/generateLayer';
+import generate from './lib/generate';
 
 const SIZES = config.SIZES;
 
@@ -10,18 +12,31 @@ const DOM = {
 
 // - Shuffle rotations
 // - Adjust mask sizes
-// - Image loading
 // - Different modalities (same image)
 export default () => {
   const render = () => {
     const size = SIZES[rand(2, SIZES.length)];
+    const layers = [
+      generate.layer({ mask: 'a', size, rotation: 0 }),
+      generate.layer({ mask: 'b', size, rotation: 90 }),
+      generate.layer({ mask: 'c', size, rotation: 180 }),
+      generate.layer({ mask: 'd', size, rotation: 270 }),
+    ];
 
-    DOM.app.innerHTML = [
-      generateLayer({ src: `images/${rand(1, 25)}.jpg`, mask: 'a', size, rotation: 90 }),
-      generateLayer({ src: `images/${rand(1, 25)}.jpg`, mask: 'b', size, rotation: 180 }),
-      generateLayer({ src: `images/${rand(1, 25)}.jpg`, mask: 'c', size, rotation: 270 }),
-      generateLayer({ src: `images/${rand(1, 25)}.jpg`, mask: 'd', size, rotation: 360 }),
-    ].join('');
+    const images = [
+      generate.image({ src: `images/${rand(1, 25)}.jpg` }),
+      generate.image({ src: `images/${rand(1, 25)}.jpg` }),
+      generate.image({ src: `images/${rand(1, 25)}.jpg` }),
+      generate.image({ src: `images/${rand(1, 25)}.jpg` }),
+    ];
+
+    DOM.app.innerHTML = images.join('');
+
+    const imageLoader = imagesLoaded('.Layer__image', { background: true });
+
+    imageLoader.on('done', () => {
+      console.log('image:done')
+    });
   };
 
   render();
