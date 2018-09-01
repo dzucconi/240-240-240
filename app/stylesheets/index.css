@@ -50,3 +50,13 @@ body {
 .Hue--360 {
   filter: hue-rotate(360deg);
 }
+
+.Indicator {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  border: 1em solid rgb(202, 202, 202);
+}
