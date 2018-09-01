@@ -1,15 +1,20 @@
+import parameters from 'queryparams';
 import imagesLoaded from 'imagesloaded';
 
-import config from './config';
+import { SIZES } from './config';
 import rand from './lib/rand';
 import sample from './lib/sample';
 import generate from './lib/generate';
 import renderNode from './lib/renderNode';
 import loadingIndicator from './lib/loadingIndicator';
 
-const SIZES = config.SIZES;
+window.parameters = parameters;
 
 export default () => {
+  const { period: PERIOD } = parameters({
+    period: 7500,
+  });
+
   const DOM = {
     app: document.getElementById('app'),
     notifications: document.getElementById('notifications'),
@@ -47,7 +52,7 @@ export default () => {
     ];
   };
 
-  const MODES = [
+  const modes = [
     (size) =>
       ['a', 'b', 'c', 'd'].map((mask, i) =>
         generate.layer({
@@ -92,7 +97,7 @@ export default () => {
   const render = () => {
     step();
 
-    const layers = sample(MODES)(sample(SIZES.slice(0, 10)));
+    const layers = sample(modes)(sample(SIZES.slice(0, 10)));
 
     loadingIndicator.show();
 
@@ -102,7 +107,7 @@ export default () => {
 
         loadingIndicator.hide();
 
-        setTimeout(render, 5000);
+        setTimeout(render, PERIOD);
       });
   };
 
