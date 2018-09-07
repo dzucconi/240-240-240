@@ -1,11 +1,11 @@
 {
-  "name": "hue-masking",
+  "name": "240-240-240",
   "description": "",
   "author": "Damon Zucconi",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dzucconi/hue-masking"
+    "url": "https://github.com/dzucconi/240-240-240"
   },
   "scripts": {
     "test": "mocha test",
