@@ -14,32 +14,36 @@
   </head>
   <body>
     <div id='app' class='App'></div>
-    <div id='info' class='Info'>
-      <div id='player' class='Player'>
-        <div class='ID'>
-          <a class='Play' id='play'>
-            <span id='state'>Play</span>
-            <span class='Separator'>|</span>
-            Damon Zucconi - 240°, 240°, 240°
-            <span class='Separator'>|</span>
-            ZG003
-          </a>
 
-          <span class='Separator'>|</span>
+    <div id='player' class='Player'>
+      <div class='ID'>
+        <a class='Play' id='play'>
+          <span id='state'>Play</span>
+          <span class='Separator'></span>
+          Damon Zucconi
+          <span class='Separator'></span>
+          240°, 240°, 240°
+          <span class='Separator'></span>
+          Zero Grow
+          <span class='Separator'></span>
+          ZG003
+        </a>
 
-          <a class='Download' href='/audio/Damon Zucconi - 240°, 240°, 240°.mp3' download>
-            Download
-            <span class='Separator'>|</span>
-            320KBPS
-            <span class='Separator'>|</span>
-            21.6MB
-          </a>
-        </div>
-
-        <div id='seek'>
+        <div id='seek' class='Seek'>
           <div id='progress' class='Progress'></div>
         </div>
       </div>
+    </div>
+
+
+    <div class='Downloader'>
+      <a class='ID Download' href='/audio/Damon Zucconi - 240°, 240°, 240°.mp3' download>
+        Download
+        <span class='Separator'></span>
+        320KBPS
+        <span class='Separator'></span>
+        21.6MB
+      </a>
     </div>
 
     <script src='DIGEST(vendor.js)'></script>

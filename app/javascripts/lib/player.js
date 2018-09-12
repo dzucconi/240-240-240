@@ -4,6 +4,8 @@ import { Howl } from 'howler';
 const STATE = {
   id: null,
   playing: false,
+  loading: false,
+  loaded: false,
 };
 
 const DOM = {
@@ -27,14 +29,17 @@ export default () => {
 
   const play = () => {
     if (STATE.playing) return;
+    if (STATE.loading) return;
 
     if (!STATE.loaded) {
+      STATE.loading = true;
       DOM.state.textContent = 'Loading';
 
       sound.load();
       sound.once('load', () => {
         STATE.id = sound.play();
         progress();
+        STATE.loading = false;
         STATE.loaded = true;
         STATE.playing = true;
         DOM.state.textContent = 'Pause';
