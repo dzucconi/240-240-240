@@ -7,6 +7,7 @@ import sample from './lib/sample';
 import generate from './lib/generate';
 import renderNode from './lib/renderNode';
 import loadingIndicator from './lib/loadingIndicator';
+import player from './lib/player';
 
 window.parameters = parameters;
 
@@ -17,7 +18,6 @@ export default () => {
 
   const DOM = {
     app: document.getElementById('app'),
-    notifications: document.getElementById('notifications'),
   };
 
   const STATE = {
@@ -112,4 +112,5 @@ export default () => {
   };
 
   render();
+  player();
 };

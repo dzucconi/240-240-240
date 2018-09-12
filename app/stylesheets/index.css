@@ -16,10 +16,19 @@ body {
 
 body {
   background-color: black;
-  color: white;
+  color: black;
   -webkit-font-smoothing: antialiased;
   font-family: sans-serif;
+  font-size: 16px;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+  a:hover {
+    color: gray;
+  }
 
 .Layer {
   position: fixed;
@@ -59,4 +68,35 @@ body {
   left: 0;
   z-index: 1;
   border: 1em solid rgb(202, 202, 202);
+}
+
+.Info {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background-color: rgb(202, 202, 202);
+  user-select: none;
+}
+
+.Play,
+.Download {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+}
+
+.ID {
+  background-color: white;
+  font-size: 1.5rem;
+}
+
+.Progress {
+  width: 0;
+  height: 1em;
+  background-color: black;
+}
+
+.Separator {
+  color: white;
+  margin: 0 0.125em;
 }
