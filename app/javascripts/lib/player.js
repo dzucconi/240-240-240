@@ -17,9 +17,10 @@ const DOM = {
 };
 
 export default () => {
+  const { src } = DOM.player.dataset;
   const sound = new Howl({
     preload: false,
-    src: ['/audio/Damon Zucconi - 240°, 240°, 240°.mp3']
+    src: [src],
   });
 
   const progress = fps(requestAnimationFrame)(10, () => {
@@ -84,4 +85,7 @@ export default () => {
   });
 
   sound.on('end', () => pause());
+  sound.on('loaderror', () => {
+    DOM.state.textContent = 'Error';
+  });
 };
