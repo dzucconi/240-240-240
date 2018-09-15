@@ -36,6 +36,7 @@
     "frame-interval": "^0.0.2",
     "howler": "^2.0.15",
     "imagesloaded": "^4.1.4",
+    "lodash.debounce": "^4.0.8",
     "queryparams": "0.0.7"
   }
 }
