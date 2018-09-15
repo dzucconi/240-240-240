@@ -83,6 +83,9 @@ a {
   right: 1em;
   user-select: none;
 }
+  .Player:hover {
+    opacity: 1 !important;
+  }
 
 .Downloader {
   position: fixed;
