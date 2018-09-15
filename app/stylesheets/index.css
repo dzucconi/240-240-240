@@ -24,7 +24,6 @@ body {
   body[data-active='false'][data-playing='true'] .Player,
   body[data-active='false'][data-playing='true'] .Downloader {
     opacity: 0;
-    transition: 1s;
     transition-delay: 1s;
   }
 
@@ -74,6 +73,11 @@ a {
   left: 0;
   z-index: 1;
   border: 1em solid rgb(202, 202, 202);
+}
+
+.Player,
+.Downloader {
+  transition: 0.75s;
 }
 
 .Player {
