@@ -12,6 +12,12 @@ import player from './lib/player';
 window.parameters = parameters;
 
 export default () => {
+  if ('ontouchstart' in document.documentElement) {
+    document.body.dataset.touch = true;
+  } else {
+    document.body.dataset.touch = false;
+  }
+
   const { period: PERIOD } = parameters({
     period: 7500,
   });

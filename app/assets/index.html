@@ -15,9 +15,9 @@
   <body>
     <div id='app' class='App'></div>
 
-    <div id='player' class='Player' data-src='DIGEST(/audio/Damon Zucconi - 240°, 240°, 240°_192.mp3)'>
-      <div class='ID'>
-        <a class='Play Link' id='play'>
+    <div class='Metadata'>
+      <div id='player' class='Player' data-src='DIGEST(/audio/Damon Zucconi - 240°, 240°, 240°_192.mp3)'>
+        <a class='Play' id='play'>
           <span id='state'>Play</span>
           <span class='Separator'></span>
           Damon Zucconi
@@ -33,23 +33,20 @@
           <div id='progress' class='Progress'></div>
         </div>
       </div>
-    </div>
 
+      <div class='Downloader'>
+        <a class='Download Link' href='DIGEST(/audio/Damon Zucconi - 240°, 240°, 240°.mp3)' download>
+          Download
+          <span class='Separator'></span>
+          320KBPS
+        </a>
 
-    <div class='Downloader'>
-      <a class='ID Download Link' href='DIGEST(/audio/Damon Zucconi - 240°, 240°, 240°.mp3)' download>
-        Download
-        <span class='Separator'></span>
-        320KBPS
-        <span class='Separator'></span>
-        21.6MB
-      </a>
+        <br>
 
-      <span class='Separator'></span>
-
-      <a class='ID Bandcamp Link' href='https://zerogrow.bandcamp.com/' target='_blank'>
-        Bandcamp
-      </a>
+        <a class='Bandcamp Link' href='https://zerogrow.bandcamp.com/' target='_blank'>
+          Bandcamp
+        </a>
+      </div>
     </div>
 
     <script src='DIGEST(vendor.js)'></script>

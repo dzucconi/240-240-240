@@ -12,20 +12,16 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-size: 24px;
 }
 
 body {
   background-color: black;
   color: black;
-  -webkit-font-smoothing: antialiased;
   font-family: sans-serif;
-  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
 }
-  body[data-active='false'][data-playing='true'] .Player,
-  body[data-active='false'][data-playing='true'] .Downloader {
-    opacity: 0;
-    transition-delay: 1s;
-  }
 
 a {
   color: black;
@@ -75,71 +71,78 @@ a {
   border: 1em solid rgb(202, 202, 202);
 }
 
-.Player,
-.Downloader {
-  transition: 0.75s;
+.Metadata {
+  position: relative;
+  user-select: none;
+  z-index: 2;
+  margin: 1em;
 }
 
-.Player {
-  position: fixed;
-  top: 1em;
-  left: 1em;
-  right: 1em;
-  user-select: none;
+.Player,
+.Downloader {
+  transition: 0.75s opacity;
 }
+
+.Player {}
   .Player:hover {
     opacity: 1 !important;
   }
 
-.Downloader {
-  position: fixed;
-  bottom: 1em;
-  left: 1em;
-  user-select: none;
-}
+.Downloader {}
 
 .Link {
+  display: inline-block;
   padding: 0.25em 0.5em;
   cursor: pointer;
+  margin-right: 1em;
   background-color: white;
 }
 
 .Play {
-  display: inline-block;
-}
-
-.ID {
-  font-size: 1.5rem;
-  display: inline-block;
+  display: block;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  background-color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .Seek {
   background-color: rgb(202, 202, 202);
+  height: 1.5em;
 }
-
-.Progress {
-  width: 0;
-  height: 0.66em;
-  background-color: black;
-}
+  .Progress {
+    width: 0;
+    height: 100%;
+    background-color: black;
+  }
 
 .Separator {
   display: inline-block;
   margin: 0 0.25em;
 }
 
+body[data-touch='false'][data-active='false'][data-playing='true'] .Player,
+body[data-touch='false'][data-active='false'][data-playing='true'] .Downloader {
+  opacity: 0;
+  transition-delay: 1s;
+}
 
 @media (max-width: 800px) {
-  .ID {
-    font-size: 1.25rem;
+  .Indicator,
+  .Metadata {
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 640px) {
-  .ID {
-    font-size: 0.75rem;
+  .Indicator,
+  .Metadata {
+    font-size: 0.5833rem;
   }
 
+  .Play,
   .Link {
     padding: 0.5em 0.66em;
   }
@@ -147,14 +150,10 @@ a {
   .Separator {
     margin: 0;
   }
-
-  .Progress {
-    height: 1em;
-  }
 }
 
-@media (max-width: 480px) {
-  .ID {
+@media (max-width: 340px) {
+  .Metadata {
     font-size: 0.625rem;
   }
 }

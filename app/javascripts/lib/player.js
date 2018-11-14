@@ -23,6 +23,7 @@ export default () => {
   const sound = new Howl({
     preload: false,
     src: [src],
+    html5: true,
   });
 
   const progress = fps(requestAnimationFrame)(10, () => {
