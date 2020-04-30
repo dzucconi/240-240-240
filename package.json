@@ -8,6 +8,7 @@
     "url": "https://github.com/dzucconi/240-240-240"
   },
   "scripts": {
+    "generate": "node scripts/generateSvgs",
     "clean": "rm -rf dist/",
     "copy:images": "mkdir -p dist && mkdir -p dist/images && cp -R src/images/* dist/images",
     "copy:svgs": "mkdir -p dist && mkdir -p dist/svgs && cp -R src/svgs/* dist/svgs",

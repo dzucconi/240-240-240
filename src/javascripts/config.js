@@ -1,4 +1,4 @@
-export const SIZES = [
+module.exports.SIZES = [
   1,
   2,
   3,

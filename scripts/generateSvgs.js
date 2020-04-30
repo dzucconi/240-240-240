@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { SIZES } = require("../app/javascripts/config");
+const { SIZES } = require("../src/javascripts/config");
 
 const GENERATORS = {
   ad: (size) => `<svg width="${size * 2}" height="${
@@ -45,7 +45,7 @@ const writeSVGs = () => {
   NAMES.forEach((name) => {
     SIZES.forEach((size) => {
       const xml = GENERATORS[name](size);
-      fs.writeFile(`./app/svgs/${name}--${size}.svg`, xml, (err) => {
+      fs.writeFile(`./src/svgs/${name}--${size}.svg`, xml, (err) => {
         if (err) return console.log(err);
         console.log(`Saved ${name}/${size}`);
       });
