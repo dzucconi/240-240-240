@@ -1,4 +1,4 @@
-import style from './style';
+import style from "./style";
 
 const image = ({ src }) =>
   `<div class='Layer__image' style='background-image: url(${src})'></div>`;

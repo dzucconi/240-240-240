@@ -27,9 +27,9 @@ a {
   color: black;
   text-decoration: none;
 }
-  a:hover {
-    color: gray;
-  }
+a:hover {
+  color: gray;
+}
 
 .Layer {
   position: fixed;
@@ -38,12 +38,12 @@ a {
   bottom: 0;
   left: 0;
 }
-  .Layer__image {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
-  }
+.Layer__image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+}
 
 .Hue--0 {
   filter: hue-rotate(0deg);
@@ -83,12 +83,14 @@ a {
   transition: 0.75s opacity;
 }
 
-.Player {}
-  .Player:hover {
-    opacity: 1 !important;
-  }
+.Player {
+}
+.Player:hover {
+  opacity: 1 !important;
+}
 
-.Downloader {}
+.Downloader {
+}
 
 .Link {
   display: inline-block;
@@ -112,19 +114,19 @@ a {
   background-color: rgb(202, 202, 202);
   height: 1.5em;
 }
-  .Progress {
-    width: 0;
-    height: 100%;
-    background-color: black;
-  }
+.Progress {
+  width: 0;
+  height: 100%;
+  background-color: black;
+}
 
 .Separator {
   display: inline-block;
   margin: 0 0.25em;
 }
 
-body[data-touch='false'][data-active='false'][data-playing='true'] .Player,
-body[data-touch='false'][data-active='false'][data-playing='true'] .Downloader {
+body[data-touch="false"][data-active="false"][data-playing="true"] .Player,
+body[data-touch="false"][data-active="false"][data-playing="true"] .Downloader {
   opacity: 0;
   transition-delay: 1s;
 }

@@ -1,18 +1,18 @@
-import parameters from 'queryparams';
-import imagesLoaded from 'imagesloaded';
+import parameters from "queryparams";
+import imagesLoaded from "imagesloaded";
 
-import { SIZES } from './config';
-import rand from './lib/rand';
-import sample from './lib/sample';
-import generate from './lib/generate';
-import renderNode from './lib/renderNode';
-import loadingIndicator from './lib/loadingIndicator';
-import player from './lib/player';
+import { SIZES } from "./config";
+import rand from "./lib/rand";
+import sample from "./lib/sample";
+import generate from "./lib/generate";
+import renderNode from "./lib/renderNode";
+import loadingIndicator from "./lib/loadingIndicator";
+import player from "./lib/player";
 
 window.parameters = parameters;
 
-export default () => {
-  if ('ontouchstart' in document.documentElement) {
+const init = () => {
+  if ("ontouchstart" in document.documentElement) {
     document.body.dataset.touch = true;
   } else {
     document.body.dataset.touch = false;
@@ -23,7 +23,7 @@ export default () => {
   });
 
   const DOM = {
-    app: document.getElementById('app'),
+    app: document.getElementById("app"),
   };
 
   const STATE = {
@@ -36,14 +36,14 @@ export default () => {
   };
 
   const load = (src) =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       const img = renderNode(generate.image({ src }));
 
       DOM.app.appendChild(img);
 
       const loader = imagesLoaded(img, { background: true });
 
-      loader.on('done', () => {
+      loader.on("done", () => {
         DOM.app.removeChild(img);
         resolve();
       });
@@ -60,7 +60,7 @@ export default () => {
 
   const modes = [
     (size) =>
-      ['a', 'b', 'c', 'd'].map((mask, i) =>
+      ["a", "b", "c", "d"].map((mask, i) =>
         generate.layer({
           src: STATE.srcs[i],
           mask,
@@ -70,7 +70,7 @@ export default () => {
       ),
 
     (size) =>
-      ['a', 'b', 'c', 'd'].map((mask, i) =>
+      ["a", "b", "c", "d"].map((mask, i) =>
         generate.layer({
           src: STATE.srcs[i],
           mask,
@@ -80,7 +80,7 @@ export default () => {
       ),
 
     (size) =>
-      ['ad', 'bc'].map((mask, i) =>
+      ["ad", "bc"].map((mask, i) =>
         generate.layer({
           src: STATE.srcs[i],
           mask,
@@ -90,12 +90,12 @@ export default () => {
       ),
 
     (size) =>
-      ['a', 'b', 'c', 'd'].map((mask, i) =>
+      ["a", "b", "c", "d"].map((mask, i) =>
         generate.layer({
           src: STATE.srcs[0],
           mask,
           size,
-          rotation: i * 90
+          rotation: i * 90,
         })
       ),
   ];
@@ -107,16 +107,17 @@ export default () => {
 
     loadingIndicator.show();
 
-    Promise.all(STATE.srcs.map(load))
-      .then(() => {
-        DOM.app.innerHTML = layers.join('');
+    Promise.all(STATE.srcs.map(load)).then(() => {
+      DOM.app.innerHTML = layers.join("");
 
-        loadingIndicator.hide();
+      loadingIndicator.hide();
 
-        setTimeout(render, PERIOD);
-      });
+      setTimeout(render, PERIOD);
+    });
   };
 
   render();
   player();
 };
+
+init();

@@ -8,29 +8,15 @@
     "url": "https://github.com/dzucconi/240-240-240"
   },
   "scripts": {
-    "test": "mocha test",
-    "start": "brunch watch --server",
-    "prod": "brunch build --production",
-    "sync": "s3-cli --config .s3config sync --delete-removed --acl-public public/ s3://work.damonzucconi.com/$npm_package_name",
-    "deploy": "npm run prod && npm run sync"
+    "clean": "rm -rf dist/",
+    "copy:images": "mkdir -p dist && mkdir -p dist/images && cp -R src/images/* dist/images",
+    "copy:svgs": "mkdir -p dist && mkdir -p dist/svgs && cp -R src/svgs/* dist/svgs",
+    "copy": "yarn copy:images && yarn copy:svgs",
+    "build": "yarn copy && parcel build src/index.html",
+    "start": "yarn copy && parcel src/index.html --open"
   },
   "devDependencies": {
-    "auto-reload-brunch": "^2.7.1",
-    "autoprefixer": "^7.1.4",
-    "babel-brunch": "^6.1.1",
-    "babel-core": "^6.17.0",
-    "babel-preset-env": "^1.6.0",
-    "brunch": "^2.10.10",
-    "clean-css-brunch": "^2.10.0",
-    "css-brunch": "^2.10.0",
-    "digest-brunch": "^1.6.0",
-    "eslint": "^4.6.1",
-    "javascript-brunch": "^2.10.0",
-    "mocha": "^3.5.1",
-    "postcss-brunch": "^2.1.0",
-    "s3-cli": "^0.13.0",
-    "should": "^13.0.1",
-    "uglify-js-brunch": "^2.10.0"
+    "parcel": "^1.12.4"
   },
   "dependencies": {
     "frame-interval": "^0.0.2",

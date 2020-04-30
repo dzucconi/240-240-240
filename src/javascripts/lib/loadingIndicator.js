@@ -1,4 +1,4 @@
-import renderNode from './renderNode';
+import renderNode from "./renderNode";
 
 const el = renderNode('<div class="Indicator"></div>');
 

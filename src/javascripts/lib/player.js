@@ -1,6 +1,6 @@
-import fps from 'frame-interval';
-import { Howl } from 'howler';
-import debounce from 'lodash.debounce';
+import fps from "frame-interval";
+import { Howl } from "howler";
+import debounce from "lodash.debounce";
 
 const STATE = {
   id: null,
@@ -11,15 +11,14 @@ const STATE = {
 
 const DOM = {
   body: document.body,
-  player: document.getElementById('player'),
-  play: document.getElementById('play'),
-  progress: document.getElementById('progress'),
-  seek: document.getElementById('seek'),
-  state: document.getElementById('state'),
+  play: document.getElementById("play"),
+  progress: document.getElementById("progress"),
+  seek: document.getElementById("seek"),
+  state: document.getElementById("state"),
 };
 
 export default () => {
-  const { src } = DOM.player.dataset;
+  const { href: src } = DOM.play;
   const sound = new Howl({
     preload: false,
     src: [src],
@@ -34,7 +33,7 @@ export default () => {
   const __play__ = () => {
     STATE.id = sound.play();
     STATE.playing = true;
-    DOM.state.textContent = 'Pause';
+    DOM.state.textContent = "Pause";
     DOM.body.dataset.playing = true;
   };
 
@@ -44,10 +43,10 @@ export default () => {
 
     if (!STATE.loaded) {
       STATE.loading = true;
-      DOM.state.textContent = 'Loading';
+      DOM.state.textContent = "Loading";
 
       sound.load();
-      sound.once('load', () => {
+      sound.once("load", () => {
         STATE.loading = false;
         STATE.loaded = true;
 
@@ -66,7 +65,7 @@ export default () => {
 
     STATE.playing = false;
 
-    DOM.state.textContent = 'Play';
+    DOM.state.textContent = "Play";
     DOM.body.dataset.playing = false;
   };
 
@@ -80,16 +79,16 @@ export default () => {
   };
 
   const seek = (e) => {
-    const percentage = (e.offsetX / DOM.seek.offsetWidth);
+    const percentage = e.offsetX / DOM.seek.offsetWidth;
     sound.seek(sound.duration() * percentage);
   };
 
-  DOM.play.addEventListener('click', (e) => {
+  DOM.play.addEventListener("click", (e) => {
     e.preventDefault();
     toggle();
   });
 
-  DOM.seek.addEventListener('mousedown', (e) => {
+  DOM.seek.addEventListener("mousedown", (e) => {
     seek(e);
     play();
   });
@@ -98,13 +97,13 @@ export default () => {
     DOM.body.dataset.active = false;
   }, 500);
 
-  DOM.body.addEventListener('mousemove', () => {
+  DOM.body.addEventListener("mousemove", () => {
     DOM.body.dataset.active = true;
     deactivate();
   });
 
-  sound.on('end', () => pause());
-  sound.on('loaderror', () => {
-    DOM.state.textContent = 'Error';
+  sound.on("end", () => pause());
+  sound.on("loaderror", () => {
+    DOM.state.textContent = "Error";
   });
 };
